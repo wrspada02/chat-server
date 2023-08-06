@@ -4,7 +4,7 @@ import { IRoomDto } from "../dto/IRoomDto";
 const roomSchema = new Schema<IRoomDto>({
   room_id: String,
   password: String,
-  isPrivate: Boolean,
+  is_private: Boolean,
   messages: [{
     content: String,
     sender: {
@@ -13,13 +13,14 @@ const roomSchema = new Schema<IRoomDto>({
     },
   }],
   owner: {
-    name: String,
-    id: String,
+    login: String,
+    avatar_url: String,
   },
-  groupPeople: [{
+  group_people: [{
     name: String,
     id: String,
   }],
+  max_users: Number,
 });
 
 export const Room = model('Room', roomSchema);

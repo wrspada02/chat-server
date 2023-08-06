@@ -1,8 +1,8 @@
 import { ICreateRoomDto } from "./ICreateRoomDto";
 
 interface UserRoom {
-  name: string;
-  id: string;
+  login: string;
+  avatar_url: string;
 }
 
 interface RoomMessage {
@@ -14,7 +14,8 @@ interface IRoomDto extends ICreateRoomDto {
   _id: string;
   messages: RoomMessage[];
   owner: UserRoom;
-  groupPeople: UserRoom[];
+  group_people: UserRoom[];
+  max_users: number;
 }
 
 export { IRoomDto, UserRoom };

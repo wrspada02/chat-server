@@ -17,7 +17,7 @@ class UserRepository implements IUserRepository {
   async listUsersByRoom(roomId: string): Promise<UserRoom[]> {
     const room = await Room.findOne({ _id: roomId });
 
-    return room?.groupPeople || [];
+    return room?.group_people || [];
   }
   async deleteUser(userId: string): Promise<IDeleteDocument> {
     return await User.deleteOne({ _id: userId });

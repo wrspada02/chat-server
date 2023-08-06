@@ -1,7 +1,10 @@
+import { UserRoom } from "./IRoomDto";
+
 interface ICreateRoomDto {
   room_id: string;
-  isPrivate: boolean;
+  is_private: boolean;
   password?: string;
+  owner: UserRoom;
 }
 
 export { ICreateRoomDto };
