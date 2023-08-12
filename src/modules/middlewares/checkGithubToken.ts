@@ -32,7 +32,7 @@ export async function checkGithubToken(
     if (githubOauthBasicAuthorization.status === 200) {
       const { login, avatar_url } = githubOauthBasicAuthorization.data.user;
 
-      request.body = <ICreateRoomDto>{ ...request.body, owner: { login, avatar_url } };
+      request.body.user = <UserRoom>{ login, avatar_url };
       next();
     } else {
       return response.status(401).send();

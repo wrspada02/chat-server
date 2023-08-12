@@ -25,6 +25,9 @@ class RoomRepository implements IRoomRepository {
   async updateRoom(updatedRoom: IRoomDto): Promise<any> { 
     return await Room.findByIdAndUpdate(updatedRoom._id, {...updatedRoom});
   }
+  async joinUserIntoRoom(updatedRoom: IRoomDto): Promise<void | null> {
+    return await Room.findByIdAndUpdate(updatedRoom._id, updatedRoom);
+  }
 }
 
 export { RoomRepository };

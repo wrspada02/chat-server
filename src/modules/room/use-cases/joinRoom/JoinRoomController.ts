@@ -1,21 +1,23 @@
 import { Request, Response } from "express";
-import { ICreateRoomDto } from "../../dto/ICreateRoomDto";
-import { CreateRoomService } from "./CreateRoomService";
+import { JoinRoomService } from "./JoinRoomService";
 import { IRoomDtoUser } from "../../../interfaces/IRoomDtoUser";
 import { IRoomDto } from "../../dto/IRoomDto";
 
-class CreateRoomController {
-  constructor (private createRoomService: CreateRoomService) {}
-  async handle(request: Request, response: Response): Promise<Response> {
+class JoinRoomController {
+  constructor (private joinRoomService: JoinRoomService) {}
+
+  async handle (request: Request, response: Response) {
+    const roomId: string = request.params.id;
     const { user, ...room }: IRoomDtoUser = request.body;
 
     const roomToUpdate: IRoomDto = {
       ...room,
-      owner: user,
+      _id: roomId,
+      group_people: [user],
     };
 
     try {
-      const createdRoom = await this.createRoomService.execute(roomToUpdate);
+      const createdRoom = await this.joinRoomService.execute(roomToUpdate);
 
       return response.status(201).json(createdRoom);
     } catch (e) {
@@ -24,4 +26,4 @@ class CreateRoomController {
   }
 }
 
-export { CreateRoomController };
+export { JoinRoomController };

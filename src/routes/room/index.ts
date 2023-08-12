@@ -6,6 +6,7 @@ import { deleteRoomController } from "./instance/DeleteRoom";
 import { deleteManyRoomsController } from "./instance/DeleteManyRooms";
 import { updateRoomController } from "./instance/UpdateRoom";
 import { checkGithubToken } from "../../modules/middlewares/checkGithubToken";
+import { joinIntoRoomController } from "./instance/JoinIntoRoom";
 
 const roomRoute = Router();
 
@@ -26,5 +27,8 @@ roomRoute.delete("/", (req, res) =>
 
 roomRoute.put("/room/:id", (req, res) =>
   updateRoomController.handle(req, res));
+
+roomRoute.put("/room/:id/join", checkGithubToken, (req, res) =>
+  joinIntoRoomController.handle(req, res));
 
 export { roomRoute };

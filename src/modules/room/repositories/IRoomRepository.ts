@@ -1,6 +1,6 @@
 import { IDeleteDocument } from "../../interfaces/IDeleteDocument";
 import { ICreateRoomDto } from "../dto/ICreateRoomDto";
-import { IRoomDto } from "../dto/IRoomDto";
+import { IRoomDto, UserRoom } from "../dto/IRoomDto";
 
 interface IRoomRepository {
   create(room: ICreateRoomDto): Promise<ICreateRoomDto>;
@@ -9,6 +9,7 @@ interface IRoomRepository {
   deleteRoom(id: string): Promise<IDeleteDocument>;
   deleteManyRooms(ids: string[]): Promise<IDeleteDocument>;
   updateRoom(updatedRoom: IRoomDto): Promise<any>;
+  joinUserIntoRoom(updatedRoom: IRoomDto): Promise<void | null>;
 }
 
 export { IRoomRepository };
