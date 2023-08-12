@@ -1,7 +1,6 @@
 import axios from "axios";
 import { NextFunction, Request, Response } from "express";
-import { ICreateRoomDto } from "../room/dto/ICreateRoomDto";
-import { UserRoom } from "../room/dto/IRoomDto";
+import { UserRoom } from "../../room/dto/IRoomDto";
 
 interface GithubChecktoken {
   user: UserRoom;

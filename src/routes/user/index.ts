@@ -5,8 +5,8 @@ import { listUsersByRoomController } from "./instance/ListUsersByRoomController"
 import { deleteUserController } from "./instance/DeleteUser";
 import { deleteManyUsersController } from "./instance/DeleteManyUsers";
 import { listAllUsersController } from "./instance/ListAllUsers";
-import { getGithubAccessToken } from "../../modules/middlewares/getGithubAccessToken";
-import { getGithubUser } from "../../modules/middlewares/getGithubUser";
+import { getGithubAccessToken } from "../../modules/middlewares/auth/getGithubAccessToken";
+import { getGithubUser } from "../../modules/middlewares/auth/getGithubUser"; 
 
 const userRoute = Router();
 userRoute.post("/login/:code", getGithubAccessToken,

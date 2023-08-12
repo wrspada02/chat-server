@@ -5,7 +5,7 @@ import { listRoomByIdController } from "./instance/ListRoomById";
 import { deleteRoomController } from "./instance/DeleteRoom";
 import { deleteManyRoomsController } from "./instance/DeleteManyRooms";
 import { updateRoomController } from "./instance/UpdateRoom";
-import { checkGithubToken } from "../../modules/middlewares/checkGithubToken";
+import { checkGithubToken } from "../../modules/middlewares/auth/checkGithubToken"; 
 import { joinIntoRoomController } from "./instance/JoinIntoRoom";
 
 const roomRoute = Router();

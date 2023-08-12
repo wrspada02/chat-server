@@ -1,5 +1,6 @@
-import { IRoomDto, UserRoom } from "../room/dto/IRoomDto";
+import { ICreateRoomDto } from "../room/dto/ICreateRoomDto";
+import { UserRoom } from "../room/dto/IRoomDto";
 
-export interface IRoomDtoUser extends IRoomDto {
+export interface ICreateRoomDtoUser extends ICreateRoomDto {
   user: UserRoom;
 }

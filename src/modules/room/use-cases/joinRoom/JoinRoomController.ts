@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { JoinRoomService } from "./JoinRoomService";
-import { IRoomDtoUser } from "../../../interfaces/IRoomDtoUser";
+import { ICreateRoomDtoUser } from "../../../interfaces/IRoomDtoUser";
 import { IRoomDto } from "../../dto/IRoomDto";
 
 class JoinRoomController {
@@ -8,11 +8,11 @@ class JoinRoomController {
 
   async handle (request: Request, response: Response) {
     const roomId: string = request.params.id;
-    const { user, ...room }: IRoomDtoUser = request.body;
+    const { user, ...room }: ICreateRoomDtoUser = request.body;
 
-    const roomToUpdate: IRoomDto = {
+    const roomToUpdate: Partial<IRoomDto> = {
       ...room,
-      _id: roomId,
+      room_id: roomId,
       group_people: [user],
     };
 

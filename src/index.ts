@@ -3,11 +3,10 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
-
-dotenv.config();
-
 import { userRoute } from "./routes/user";
 import { roomRoute } from "./routes/room";
+
+dotenv.config();
 
 const PORT = 5000;
 const app = express();
