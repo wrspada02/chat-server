@@ -9,7 +9,7 @@ interface IRoomRepository {
   deleteRoom(id: string): Promise<IDeleteDocument>;
   deleteManyRooms(ids: string[]): Promise<IDeleteDocument>;
   updateRoom(updatedRoom: IRoomDto): Promise<any>;
-  joinUserIntoRoom(updatedRoom: ICreateRoomDto): Promise<void | null>;
+  joinUserIntoRoom(updatedRoom: Partial<ICreateRoomDto>): Promise<IRoomDto | null>;
 }
 
 export { IRoomRepository };

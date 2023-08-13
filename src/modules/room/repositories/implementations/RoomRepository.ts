@@ -10,23 +10,29 @@ class RoomRepository implements IRoomRepository {
 
     return await roomDocument.save();
   }
+  
   async listAllRooms(): Promise<IRoomDto[]> {
     return await Room.find({});
   }
+
   async listRoom(id: string): Promise<IRoomDto | null> {
-    return await Room.findOne({ _id: id });
+    return await Room.findOne({ room_id: id });
   }
+
   async deleteRoom(id: string): Promise<IDeleteDocument> {
     return await Room.deleteOne({ _id: id });
   }
+
   async deleteManyRooms(ids: string[]): Promise<IDeleteDocument> {
     return await Room.deleteMany({ _id: ids });
   }
+
   async updateRoom(updatedRoom: IRoomDto): Promise<any> { 
     return await Room.findByIdAndUpdate(updatedRoom._id, {...updatedRoom});
   }
-  async joinUserIntoRoom(updatedRoom: ICreateRoomDto): Promise<void | null> {
-    return await Room.findByIdAndUpdate(updatedRoom.room_id, updatedRoom);
+
+  async joinUserIntoRoom(updatedRoom: Partial<ICreateRoomDto>): Promise<IRoomDto | null> {
+    return await Room.findOneAndUpdate({ room_id: updatedRoom.room_id }, { ...updatedRoom });
   }
 }
 
