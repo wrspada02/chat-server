@@ -7,25 +7,29 @@ import { deleteManyRoomsController } from "./instance/DeleteManyRooms";
 import { updateRoomController } from "./instance/UpdateRoom";
 import { checkGithubToken } from "../../modules/middlewares/auth/checkGithubToken"; 
 import { joinIntoRoomController } from "./instance/JoinIntoRoom";
+import { listRoomsByUserController } from "./instance/ListRoomsByUser";
 
 const roomRoute = Router();
 
 roomRoute.post("/create", checkGithubToken, (req, res) => 
   createRoomController.handle(req, res));
 
-roomRoute.get("/list", (req, res) => 
+roomRoute.get("/list", checkGithubToken, (req, res) => 
   listRoomsController.handle(req, res));
 
-roomRoute.get("/room/list/:id", (req, res) => 
+roomRoute.get("/room/list/:id", checkGithubToken, (req, res) => 
   listRoomByIdController.handle(req, res));
 
-roomRoute.delete("/room/:id", (req, res) => 
+roomRoute.get("/room/user", checkGithubToken, (req, res) =>
+  listRoomsByUserController.handle(req, res));
+
+roomRoute.delete("/room/:id", checkGithubToken, (req, res) => 
   deleteRoomController.handle(req, res));
 
-roomRoute.delete("/", (req, res) =>
+roomRoute.delete("/", checkGithubToken, (req, res) =>
   deleteManyRoomsController.handle(req, res));
 
-roomRoute.put("/room/:id", (req, res) =>
+roomRoute.put("/room/:id", checkGithubToken, (req, res) =>
   updateRoomController.handle(req, res));
 
 roomRoute.put("/room/:id/join", checkGithubToken, (req, res) =>
