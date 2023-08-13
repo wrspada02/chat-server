@@ -11,7 +11,6 @@ class JoinRoomController {
     const { user, ...room }: ICreateRoomDtoUser = request.body;
 
     const roomToUpdate: Partial<IRoomDto> = {
-      ...room,
       room_id: roomId,
       group_people: [user],
     };

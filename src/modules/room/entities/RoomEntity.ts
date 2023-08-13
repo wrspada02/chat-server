@@ -8,8 +8,8 @@ const roomSchema = new Schema<IRoomDto>({
   messages: [{
     content: String,
     sender: {
-      name: String,
-      id: String,
+      login: String,
+      avatar_url: String,
     },
   }],
   owner: {
@@ -17,8 +17,8 @@ const roomSchema = new Schema<IRoomDto>({
     avatar_url: String,
   },
   group_people: [{
-    name: String,
-    id: String,
+    login: String,
+    avatar_url: String,
   }],
   max_users: Number,
 });
