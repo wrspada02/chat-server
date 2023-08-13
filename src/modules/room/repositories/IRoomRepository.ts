@@ -11,6 +11,7 @@ interface IRoomRepository {
   updateRoom(updatedRoom: IRoomDto): Promise<any>;
   joinUserIntoRoom(updatedRoom: Partial<ICreateRoomDto>): Promise<IRoomDto | null>;
   listRoomsByUser(userLogin: string): Promise<IRoomDto[] | null>;
+  addMessage(updatedRoom: Partial<IRoomDto>): Promise<IRoomDto | null>;
 }
 
 export { IRoomRepository };

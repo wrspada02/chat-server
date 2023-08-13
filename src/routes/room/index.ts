@@ -8,6 +8,7 @@ import { updateRoomController } from "./instance/UpdateRoom";
 import { checkGithubToken } from "../../modules/middlewares/auth/checkGithubToken"; 
 import { joinIntoRoomController } from "./instance/JoinIntoRoom";
 import { listRoomsByUserController } from "./instance/ListRoomsByUser";
+import { addMessageController } from "./instance/AddMessage";
 
 const roomRoute = Router();
 
@@ -34,5 +35,8 @@ roomRoute.put("/room/:id", checkGithubToken, (req, res) =>
 
 roomRoute.put("/room/:id/join", checkGithubToken, (req, res) =>
   joinIntoRoomController.handle(req, res));
+
+roomRoute.put("/room/:id/message", checkGithubToken, (req, res) =>
+  addMessageController.handle(req, res));
 
 export { roomRoute };

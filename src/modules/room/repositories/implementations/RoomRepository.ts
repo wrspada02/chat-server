@@ -39,6 +39,10 @@ class RoomRepository implements IRoomRepository {
     return await Room.find({ $or: [{ 'owner.login': userLogin }, 
       { 'group_people': { $elemMatch: { login: userLogin }}}]});
   }
+
+  async addMessage(updatedRoom: Partial<IRoomDto>): Promise<IRoomDto | null> {
+    return await Room.findOneAndUpdate({ room_id: updatedRoom.room_id }, { ...updatedRoom  });
+  }
 }
 
 export { RoomRepository };
