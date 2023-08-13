@@ -13,7 +13,6 @@ interface RoomMessage {
 interface IRoomDto extends ICreateRoomDto {
   _id: string;
   messages: RoomMessage[];
-  owner: UserRoom;
   group_people: UserRoom[];
   max_users: number;
 }

@@ -36,7 +36,8 @@ class RoomRepository implements IRoomRepository {
   }
 
   async listRoomsByUser(userLogin: string): Promise<IRoomDto[] | null> {
-    return await Room.find({ $or: [{ owner: userLogin }, { group_people: userLogin }]});
+    return await Room.find({ $or: [{ 'owner.login': userLogin }, 
+      { 'group_people': { $elemMatch: { login: userLogin }}}]});
   }
 }
 
