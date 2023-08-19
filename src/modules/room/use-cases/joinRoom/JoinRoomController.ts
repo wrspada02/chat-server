@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { JoinRoomService } from "./JoinRoomService";
 import { ICreateRoomDtoUser } from "../../../interfaces/IRoomDtoUser";
-import { IRoomDto } from "../../dto/IRoomDto";
+import { IRoomDto, UserRoom } from "../../dto/IRoomDto";
 
 class JoinRoomController {
   constructor (private joinRoomService: JoinRoomService) {}
@@ -10,7 +10,7 @@ class JoinRoomController {
     const roomId: string = request.params.id;
     const { user, ...room }: ICreateRoomDtoUser = request.body;
 
-    const roomToUpdate: Partial<IRoomDto> = {
+    const roomToUpdate: Partial<IRoomDto> & { group_people: UserRoom[] } = {
       room_id: roomId,
       group_people: [user],
     };

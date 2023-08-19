@@ -31,7 +31,7 @@ class RoomRepository implements IRoomRepository {
     return await Room.findByIdAndUpdate(updatedRoom._id, {...updatedRoom});
   }
 
-  async joinUserIntoRoom(updatedRoom: Partial<ICreateRoomDto>): Promise<IRoomDto | null> {
+  async joinUserIntoRoom(updatedRoom: Partial<IRoomDto>): Promise<IRoomDto | null> {
     return await Room.findOneAndUpdate({ room_id: updatedRoom.room_id }, { ...updatedRoom });
   }
 
