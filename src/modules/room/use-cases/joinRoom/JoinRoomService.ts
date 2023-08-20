@@ -15,6 +15,10 @@ class JoinRoomService {
       throw new Error("Max users on room has been gotten");
     }
 
+    if (room.is_private && room.password !== updatedRoom.password) {
+      throw new Error("Password does not match");
+    }
+
     if (isThereSameUser) throw new 
       Error("This user has already been added");
 
