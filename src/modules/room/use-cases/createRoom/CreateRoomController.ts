@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ICreateRoomDto } from "../../dto/ICreateRoomDto";
 import { CreateRoomService } from "./CreateRoomService";
 import { ICreateRoomDtoUser } from "../../../interfaces/IRoomDtoUser";
+import { io } from "../../../..";
 
 class CreateRoomController {
   constructor (private createRoomService: CreateRoomService) {}
@@ -16,6 +17,7 @@ class CreateRoomController {
     try {
       const createdRoom = await this.createRoomService.execute(roomToUpdate);
 
+      io.sockets.emit('add-room', roomToUpdate);
       return response.status(201).json(createdRoom);
     } catch (e) {
       return response.status(400).json(e);
