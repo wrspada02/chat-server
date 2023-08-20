@@ -41,7 +41,7 @@ class RoomRepository implements IRoomRepository {
   }
 
   async addMessage(updatedRoom: Partial<IRoomDto>): Promise<IRoomDto | null> {
-    return await Room.findOneAndUpdate({ room_id: updatedRoom.room_id }, { ...updatedRoom  });
+    return await Room.findOneAndReplace({ room_id: updatedRoom.room_id }, { ...updatedRoom  });
   }
 }
 

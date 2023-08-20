@@ -29,7 +29,7 @@ class JoinRoomService {
       password: room.password,
     };
 
-    return this.roomRepository.joinUserIntoRoom(roomAddPerson);
+    return await this.roomRepository.joinUserIntoRoom(roomAddPerson);
   }
 }
 

@@ -16,7 +16,7 @@ class AddMessageController {
 
       const updatedRoom = await this.addMessageService.execute(room);
       
-      io.sockets.emit('add-message-user', updatedRoom);
+      io.sockets.emit('add-message-room', room);
       return response.status(200).json(updatedRoom);
     } catch (e) {
       return response.status(500).send();
