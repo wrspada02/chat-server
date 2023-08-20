@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { AddMessageService } from "./AddMessageService";
 import { IRoomDto } from "../../dto/IRoomDto";
+import { io } from "../../../..";
 
 class AddMessageController {
   constructor (private addMessageService: AddMessageService) {}
@@ -15,6 +16,7 @@ class AddMessageController {
 
       const updatedRoom = await this.addMessageService.execute(room);
       
+      io.sockets.emit('add-message-user', updatedRoom);
       return response.status(200).json(updatedRoom);
     } catch (e) {
       return response.status(500).send();
