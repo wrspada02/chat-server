@@ -14,12 +14,12 @@ class JoinRoomController {
     const roomToUpdate: Partial<IRoomDto> & { group_people: UserRoom[] } = {
       room_id: roomId,
       group_people: [user],
+      password: room.password,
     };
 
     try {
       const createdRoom = await this.joinRoomService.execute(roomToUpdate);
 
-      io.sockets.emit('add-person-room', roomToUpdate);
       return response.status(201).json(createdRoom);
     } catch (e) {
       return response.status(400).json(e);

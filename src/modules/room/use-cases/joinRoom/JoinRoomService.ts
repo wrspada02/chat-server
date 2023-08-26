@@ -1,3 +1,4 @@
+import { io } from "../../../..";
 import { IRoomDto, UserRoom } from "../../dto/IRoomDto";
 import { RoomRepository } from "../../repositories/implementations/RoomRepository";
 
@@ -32,6 +33,8 @@ class JoinRoomService {
       room_id: room.room_id,
       password: room.password,
     };
+
+    io.sockets.emit('add-person-room', roomAddPerson);
 
     return await this.roomRepository.joinUserIntoRoom(roomAddPerson);
   }

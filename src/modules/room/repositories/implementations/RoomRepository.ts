@@ -6,7 +6,7 @@ import { IDeleteDocument } from "../../../interfaces/IDeleteDocument";
 
 class RoomRepository implements IRoomRepository {
   async create(room: ICreateRoomDto): Promise<IRoomDto> {
-    const roomDocument = new Room({ ...room, max_users: 5 });
+    const roomDocument = new Room({ ...room, max_users: 5, messages: [] });
 
     return await roomDocument.save();
   }
